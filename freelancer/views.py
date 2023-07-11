@@ -9,6 +9,15 @@ def home(request):
     return render(request, 'index.html')
 
 
+def freelancer_page(request, pk):
+    return render(request, 'freelancer_page.html')
+
+
+class FreelancerDetailView(generics.RetrieveAPIView):
+    serializer_class = FreelancerSerializer
+    queryset = Freelancer.objects.all()
+
+
 class FreelancerListView(generics.ListAPIView):
     serializer_class = FreelancerSerializer
 

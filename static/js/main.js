@@ -8,6 +8,12 @@ let regionID = 2 //Tel-Aviv by default
 let servicesList
 
 
+// clean a div function
+function cleanObject(object){
+    while (object.firstChild){
+        object.removeChild(object.firstChild)
+    }
+}
 
 
 async function fetchingFunc(url) {
@@ -58,7 +64,7 @@ regionSelect.addEventListener('change', (event) => {
 
 function changeRegion(){
     console.log('region changed')
-    regionID= regionSelect.value
+    regionID = regionSelect.value
 
     //TODO: refresh the list
 }
@@ -125,82 +131,31 @@ searchButton.addEventListener("click", async (event) => {
 // Show cards
 
 function showFreelancers(profis){
+    cleanObject(resultsDiv)
     for (let profi of profis) {
         const serviceNames = profi.services.map(service => service.name);
         const servicesString = serviceNames.join(', ');
         const cardHTML = `
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">
-                    ${profi.user.first_name} ${profi.user.last_name}
-                </h5>
-                <p class="card-text">${profi.details}</p>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Stars</li>
-                <li class="list-group-item">${servicesString}</li>
-            </ul>
+            <div class="card h-100">
+                <img src="https://avatars.dicebear.com/api/micah/${profi.user.username}.svg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        ${profi.user.first_name} ${profi.user.last_name}
+                    </h5>
+                    <p class="card-text">${profi.details}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Stars</li>
+                    <li class="list-group-item">${servicesString}</li>
+                </ul>
+            </div>   
         `
         const freelancerCard = document.createElement('div');
         freelancerCard.innerHTML = cardHTML;
-        freelancerCard.classList.add('card');
+        freelancerCard.classList.add('col');
         freelancerCard.style.width = '18rem';
         resultsDiv.appendChild(freelancerCard);
     }
 }
 
-// Create a card function
-// Todo: delete
-function createFreelancerCard(freelancer) {
-    // Create the div element
-    const divElement = document.createElement('div');
-    divElement.classList.add('card');
-    divElement.style.width = '18rem';
-
-    // Create the image element
-    const imgElement = document.createElement('img');
-    imgElement.src = '...'; // Replace with the image source
-    imgElement.classList.add('card-img-top');
-    imgElement.alt = '...'; // Replace with the alt text
-
-    // Create the card body element
-    const cardBodyElement = document.createElement('div');
-    cardBodyElement.classList.add('card-body');
-
-    // Create the card title element
-    const cardTitleElement = document.createElement('h5');
-    cardTitleElement.classList.add('card-title');
-    cardTitleElement.textContent = 'Name';
-
-    // Create the card text element
-    const cardTextElement = document.createElement('p');
-    cardTextElement.classList.add('card-text');
-    cardTextElement.textContent = 'Details';
-
-    // Create the list group element
-    const listGroupElement = document.createElement('ul');
-    listGroupElement.classList.add('list-group', 'list-group-flush');
-
-    // Create the list items for the list group
-    const listItem1 = document.createElement('li');
-    listItem1.classList.add('list-group-item');
-    listItem1.textContent = 'Stars';
-
-    const listItem2 = document.createElement('li');
-    listItem2.classList.add('list-group-item');
-    listItem2.textContent = 'Services';
-
-    // Append the elements to the appropriate parent elements
-    divElement.appendChild(imgElement);
-    divElement.appendChild(cardBodyElement);
-    divElement.appendChild(listGroupElement);
-
-    cardBodyElement.appendChild(cardTitleElement);
-    cardBodyElement.appendChild(cardTextElement);
-
-    listGroupElement.appendChild(listItem1);
-    listGroupElement.appendChild(listItem2);
-
-    return divElement;
-}
 
