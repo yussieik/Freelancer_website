@@ -9,8 +9,8 @@ SCORES_CHOICES = (
     ("5", 5)
 )
 
-class User(AbstractUser):
 
+class User(AbstractUser):
     pass
 
 

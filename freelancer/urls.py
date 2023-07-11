@@ -1,12 +1,16 @@
 from django.contrib import admin
 from django.urls import path
 from django.contrib.auth.views import LoginView, LogoutView
-from .views import FreelancerListView
+from .views import FreelancerListView, RegionsListView, home
+
 
 
 urlpatterns = [
     # path('', homepage, name='homepage_url'),
-    path('api/freelancers/<str:region>/<str:service>', FreelancerListView.as_view(), name='freelancers_list_url')
+    path('api/freelancers/<str:region>/<str:service>', FreelancerListView.as_view(), name='freelancers_list_url'),
+    path('api/regions', RegionsListView.as_view(), name='freelancers_list_url'),
+    path('home', home, name='homepage_url'),
+
 
 
     # path('visitors/login/', LoginView.as_view(template_name='visitors_login.html'), name='login'),

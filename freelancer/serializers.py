@@ -11,7 +11,7 @@ class UserSerializer(serializers.ModelSerializer):
 class RegionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Region
-        fields = ('name',)
+        fields = ('id', 'name')
 
 
 class ServiceSerializer(serializers.ModelSerializer):

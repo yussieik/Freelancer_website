@@ -1,4 +1,4 @@
-from .models import User, Freelancer, Service, Region
+from freelancer.models import User, Freelancer, Service, Region
 from faker import Faker
 from random import choice
 

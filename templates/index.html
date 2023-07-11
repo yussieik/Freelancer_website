@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{%load static%}
+{% block content %}
+
+    <main>
+      <div id="search"></div>
+        <form class="search-container">
+            <input id=searchInput placeholder="To do ..." autocomplete="off">
+            <button id="searchButton">Find</button>
+        </form>
+        <div id="popup" class="popup" style="display: none;"></div>
+
+
+    </main>
+
+
+   <script src="{% static 'js/main.js' %}"> </script>
+
+{% endblock content %}
