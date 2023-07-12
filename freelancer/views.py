@@ -1,7 +1,13 @@
 from django.shortcuts import render
 
-from .models import Freelancer, Region, Service
-from .serializers import FreelancerSerializer, RegionSerializer, ServiceSerializer
+from .models import Freelancer, Region, Service, Review
+from .serializers import (
+    FreelancerSerializer,
+    RegionSerializer,
+    ServiceSerializer,
+    ReviewSerializer
+)
+
 from rest_framework import generics
 
 
@@ -36,3 +42,12 @@ class RegionsListView(generics.ListAPIView):
 class ServicesListView(generics.ListAPIView):
     queryset = Service.objects.all()
     serializer_class = ServiceSerializer
+
+
+class ReviewsListView(generics.ListAPIView):
+    serializer_class = ReviewSerializer
+
+    def get_queryset(self):
+        freelancer = self.kwargs.get('freelancer')
+        queryset = Review.objects.filter(freelancer=freelancer)
+        return queryset

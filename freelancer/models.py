@@ -42,5 +42,12 @@ class Review(models.Model):
     score = models.IntegerField(choices=SCORES_CHOICES)
     text = models.TextField(null=True, blank=True)
     freelancer = models.ForeignKey(Freelancer, on_delete=models.CASCADE, related_name="reviews")
+    author = models.CharField(max_length=50, default='Anonymous')
 
+    def __str__(self):
+        if len(self.text) <= 50:
+            text = self.text
+        else:
+            text = self.text[:50]
+        return f'{self.score} {text}'
 

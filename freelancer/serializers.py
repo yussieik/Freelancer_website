@@ -19,6 +19,11 @@ class ServiceSerializer(serializers.ModelSerializer):
         model = Service
         fields = ('id', 'name',)
 
+class ReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Review
+        fields = ('id', 'score', 'text', 'freelancer', 'author')
+
 
 class FreelancerSerializer(serializers.ModelSerializer):
     user = UserSerializer()

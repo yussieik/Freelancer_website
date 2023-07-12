@@ -6,6 +6,7 @@ from .views import (
     FreelancerDetailView,
     RegionsListView,
     ServicesListView,
+    ReviewsListView,
     home,
     freelancer_page
 )
@@ -18,6 +19,7 @@ urlpatterns = [
     path('api/freelancer/<int:pk>', FreelancerDetailView.as_view(), name='freelancer_detail_api'),
     path('api/regions', RegionsListView.as_view(), name='regions_list_api'),
     path('api/services', ServicesListView.as_view(), name='service_list_api'),
+    path('api/reviews/<int:freelancer>', ReviewsListView.as_view(), name='reviews_list_api'),
     path('home', home, name='homepage_url'),
     path('profi/<int:pk>', freelancer_page, name='freelancer_page_url')
 

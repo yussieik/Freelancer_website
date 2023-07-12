@@ -1,5 +1,5 @@
 const regionSelect=document.getElementById('regionInput')
-
+const containerDiv = document.getElementById('container')
 const searchParams = new URLSearchParams(window.location.search);
 let regionID = searchParams.get('regionID');
 console.log('regionID', regionID);
@@ -23,8 +23,7 @@ async function fetchingFunc(url) {
 
 // Populating regions selection field
 async function getRegionsList(){
-    const result = await fetchingFunc('/api/regions')
-    return result
+    return await fetchingFunc('/api/regions')
 }
 
 async function populateRegionSelect(){
@@ -59,8 +58,43 @@ function changeRegion(){
 }
 
 // Geting the id of a profi
+
 const root = document.getElementById('root');
 const pathname = window.location.pathname;
 const pathnameParts = pathname.split('/');
 const profiID = pathnameParts[2];
 console.log(profiID)
+
+
+// fetch profi data
+async function getProfiData(){
+    return await fetchingFunc(`/api/freelancer/${profiID}`)
+}
+
+// show profi data
+
+async function showProfiData(){
+    const profiData = await getProfiData()
+    constContainerHTML=`
+        <div class="row justify-content-center d-flex">
+            <img class="col-3" src="https://avatars.dicebear.com/api/micah/laura22.svg">
+            <div class="col-4 pl-2">
+                <h2>
+                 ${profiData.user.first_name} 
+                 ${profiData.user.last_name}
+                </h2>
+                <h4>${profiData.details}</h4>
+                <h5>${profiData.user.email}</h5>
+            </div>
+        </div>
+
+        <div class="rewiews row justify-content-center my-3">
+            review1
+            review1
+            review1
+        </div>
+    `
+
+    containerDiv.innerHTML = constContainerHTML
+}
+showProfiData()

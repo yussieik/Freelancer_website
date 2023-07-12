@@ -1,6 +1,12 @@
 from freelancer.models import User, Freelancer, Service, Region
 from faker import Faker
 from random import choice
+from django.core.management.base import BaseCommand
+
+class Command(BaseCommand):
+    def handle(self, *args, **options):
+        create_fake_users(10)
+        print('user created')
 
 fake = Faker()
 
