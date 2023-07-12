@@ -87,16 +87,12 @@ async function showProfiData(){
                 <h5>${profiData.user.email}</h5>
             </div>
         </div>
-
-        <div id='reviews' class="row justify-content-center my-3">
-        </div>
     `
 
     containerDiv.innerHTML = constContainerHTML
 }
 showProfiData()
 
-const reviewsContainerDiv = document.getElementById("reviews-container")
 
 // Show reviews
 async function showReviews(){
@@ -123,4 +119,36 @@ async function showReviews(){
 }
 
 showReviews()
+
+function createReview(author, score, text, freelancer) {
+   const data = {
+       method: 'POST',
+       headers: {
+            "Content-Type": "application/json",
+       },
+       body: JSON.stringify({
+           "author": "ff",
+           "score": "5",
+           "text": "gggg",
+           "freelancer": 36
+       })
+   }
+   console.log(data)
+   fetch('/api/create-review/', data)
+}
+
+// submit a review
+const reviewsContainerDiv = document.getElementById("reviews-container")
+const reviewSubmit = document.getElementById("submitForm")
+reviewSubmit.addEventListener('click', e => {
+    e.preventDefault();
+    const score = document.querySelector('input[name="score"]:checked').id[4];
+    const text = document.getElementById("text").value;
+    const author = document.getElementById("author").value
+
+    createReview(author, score, text, profiID)
+    })
+
+
+
 

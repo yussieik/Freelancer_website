@@ -1,11 +1,14 @@
 from django.shortcuts import render
+from rest_framework.permissions import AllowAny
+
 
 from .models import Freelancer, Region, Service, Review
 from .serializers import (
     FreelancerSerializer,
     RegionSerializer,
     ServiceSerializer,
-    ReviewSerializer
+    ReviewSerializer,
+    ReviewCreateSerializer
 )
 
 from rest_framework import generics
@@ -51,3 +54,9 @@ class ReviewsListView(generics.ListAPIView):
         freelancer = self.kwargs.get('freelancer')
         queryset = Review.objects.filter(freelancer=freelancer)
         return queryset
+
+
+class ReviewCreateView(generics.CreateAPIView):
+   queryset = Review.objects.all()
+   serializer_class = ReviewCreateSerializer
+   permission_classes = (AllowAny,)

@@ -5,6 +5,53 @@
     <div class="container" id="container">
     </div>
 
+           <div class="form row my-5">
+           <div class="" method="post" id="postForm">
+{#               {% csrf_token %}#}
+             <div class="d-flex justify-content-center">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="score" id="star1">
+                  <label class="form-check-label" for="star1">
+                    ★
+                  </label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="score" id="star2">
+                  <label class="form-check-label" for="star2">
+                    ★★
+                  </label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="score" id="star3">
+                  <label class="form-check-label" for="star3">
+                    ★★★
+                  </label>
+                </div>
+
+                <div class="form-check-inline">
+                  <input class="form-check-input" type="radio" name="score" id="star4">
+                  <label class="form-check-label" for="star4">
+                    ★★★★
+                  </label>
+                </div>
+
+                <div class="form-check-inline">
+                  <input class="form-check-input" type="radio" name="score" id="star5" checked>
+                  <label class="form-check-label" for="star5">
+                    ★★★★★
+                  </label>
+                </div>
+              </div>
+
+               <input class="form-control my-3 w-75 mx-auto" type="text" id="author" placeholder="Your name"/>
+               <textarea class="form-control my-3 w-75 mx-auto" id="text" placeholder="Your review"></textarea>
+               <button class="form-control my-3 w-75 mx-auto bg-primary-subtle" id="submitForm" type="submit"> Submit </button>
+           </div>
+       </div>
+
+
     <div class="container" id="reviews-container">
 
     </div>

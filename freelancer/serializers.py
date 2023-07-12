@@ -25,6 +25,13 @@ class ReviewSerializer(serializers.ModelSerializer):
         fields = ('id', 'score', 'text', 'freelancer', 'author', 'date')
 
 
+class ReviewCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Review
+        fields = ('author', 'score', 'text', 'freelancer')
+
+
+
 class FreelancerSerializer(serializers.ModelSerializer):
     user = UserSerializer()
     regions = serializers.SerializerMethodField()
