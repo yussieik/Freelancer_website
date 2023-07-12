@@ -22,7 +22,7 @@ class ServiceSerializer(serializers.ModelSerializer):
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
-        fields = ('id', 'score', 'text', 'freelancer', 'author')
+        fields = ('id', 'score', 'text', 'freelancer', 'author', 'date')
 
 
 class FreelancerSerializer(serializers.ModelSerializer):

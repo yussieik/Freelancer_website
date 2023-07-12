@@ -3,18 +3,25 @@
 {% block content %}
 
     <main>
-      <div id="search">
-        <form class="search-container">
-            <input id=searchInput placeholder="To do ..." autocomplete="off">
-            <button id="searchButton">Find</button>
-        </form>
-        <div id="popup" class="popup" style="display: none;"></div>
+      <div id="search" class="mt-5">
+{#        <form class="search-container">#}
+{#            <input id=searchInput placeholder="To do ..." autocomplete="off">#}
+{#            <button id="searchButton">Find</button>#}
+{#        </form>#}
+          <div class="w-75 input-group mb-3 mx-auto">
+            <input id="searchInput" type="text" class="form-control" placeholder="To do ..." aria-label="To do" aria-describedby="searchButton">
+            <button class="btn btn-outline-secondary" type="button" id="searchButton">Find</button>
+          </div>
+
+
+        <div id="popup" class="popup w-75 mx-auto" style="display: none;"></div>
       </div>
 
-        <div id="results" class="row row-cols-1 row-cols-md-2 g-4">
+        <div id="results" class="row row-cols-1 row-cols-md-2 g-4 mb-5">
         </div>
 
     </main>
+
 
 
    <script src="{% static 'js/main.js' %}"> </script>

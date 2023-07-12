@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from datetime import date
 
 SCORES_CHOICES = (
     ("1", 1),
@@ -43,6 +44,7 @@ class Review(models.Model):
     text = models.TextField(null=True, blank=True)
     freelancer = models.ForeignKey(Freelancer, on_delete=models.CASCADE, related_name="reviews")
     author = models.CharField(max_length=50, default='Anonymous')
+    date = models.DateField(default=date.today)
 
     def __str__(self):
         if len(self.text) <= 50:

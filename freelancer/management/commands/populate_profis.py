@@ -5,7 +5,7 @@ from django.core.management.base import BaseCommand
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        create_fake_users(10)
+        create_fake_users(1000)
         print('user created')
 
 fake = Faker()
@@ -13,16 +13,19 @@ fake = Faker()
 
 def create_fake_users(num_users):
 
-    for _ in range(int(num_users / 3)):
+    for _ in range(int(num_users / 50)):
         fake_job = Service.objects.create(name=fake.job())
         fake_job.save()
 
     for i in range(num_users):
         print(f'user {i} creation')
+        username = fake.user_name()
+        if username in [x.username for x in User.objects.all()]:
+            continue
         fake_user = User.objects.create_user(
             first_name=fake.first_name(),
             last_name=fake.last_name(),
-            username=fake.user_name(),
+            username=username,
             email=fake.email(),
             password=fake.password(),
         )

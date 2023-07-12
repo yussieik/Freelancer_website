@@ -130,22 +130,39 @@ searchButton.addEventListener("click", async (event) => {
 
 // Show cards
 
-function showFreelancers(profis){
+async function showFreelancers(profis){
     cleanObject(resultsDiv)
     for (let profi of profis) {
         const serviceNames = profi.services.map(service => service.name);
         const servicesString = serviceNames.join(', ');
+
+        // get reviews scores
+        const reviewData = await fetchingFunc(`/api/reviews/${profi.id}`)
+        const reviewsAmount = reviewData.length
+        let averageScore
+            if (reviewsAmount){
+                averageScore = (reviewData.reduce((acc, review) => acc + parseInt(review.score), 0) /
+            reviewsAmount).toFixed(1);
+            } else {
+                averageScore = '-'
+            }
+
+        console.log(reviewData)
+
         const cardHTML = `
             <div class="card h-100">
                 <img src="https://avatars.dicebear.com/api/micah/${profi.user.username}.svg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">
-                        ${profi.user.first_name} ${profi.user.last_name}
+                        <a href="profi/${profi.id}"
+                            class="link-dark link-underline-opacity-0 link-opacity-50-hover">
+                            ${profi.user.first_name} ${profi.user.last_name}
+                        </a>
                     </h5>
                     <p class="card-text">${profi.details}</p>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Stars</li>
+                    <li class="list-group-item text-warning">★ ${averageScore}</li>
                     <li class="list-group-item">${servicesString}</li>
                 </ul>
             </div>   

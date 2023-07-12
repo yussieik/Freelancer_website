@@ -77,7 +77,7 @@ async function showProfiData(){
     const profiData = await getProfiData()
     constContainerHTML=`
         <div class="row justify-content-center d-flex">
-            <img class="col-3" src="https://avatars.dicebear.com/api/micah/laura22.svg">
+            <img class="col-3" src="https://avatars.dicebear.com/api/micah/${profiData.user.username}.svg">
             <div class="col-4 pl-2">
                 <h2>
                  ${profiData.user.first_name} 
@@ -109,7 +109,7 @@ async function showReviews(){
         cardDiv.innerHTML = `
             <div class="card-header d-flex justify-content-between">
                 <h4 class="text-warning"> ${stars} </h4>
-                <p>2 days ago</p>
+                <p>${review.date}</p>
             </div>
             <div class="card-body">
                 <h5 class="card-title">${review.author}</h5>
