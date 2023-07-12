@@ -88,13 +88,39 @@ async function showProfiData(){
             </div>
         </div>
 
-        <div class="rewiews row justify-content-center my-3">
-            review1
-            review1
-            review1
+        <div id='reviews' class="row justify-content-center my-3">
         </div>
     `
 
     containerDiv.innerHTML = constContainerHTML
 }
 showProfiData()
+
+const reviewsContainerDiv = document.getElementById("reviews-container")
+
+// Show reviews
+async function showReviews(){
+    reviewData = await fetchingFunc(`/api/reviews/${profiID}`)
+    for (review of reviewData){
+        let stars = '★'.repeat(parseInt(review.score))
+        stars += '☆'.repeat(5 - parseInt(review.score))
+        let cardDiv = document.createElement('div')
+        cardDiv.classList.add('card', 'm-4')
+        cardDiv.innerHTML = `
+            <div class="card-header d-flex justify-content-between">
+                <h4 class="text-warning"> ${stars} </h4>
+                <p>2 days ago</p>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">${review.author}</h5>
+                <p class="card-text">${review.text}</p>
+            </div>
+        `
+        reviewsContainerDiv.appendChild(cardDiv)
+    }
+
+
+}
+
+showReviews()
+
