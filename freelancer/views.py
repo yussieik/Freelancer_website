@@ -47,6 +47,7 @@ class ServicesListView(generics.ListAPIView):
     serializer_class = ServiceSerializer
 
 
+
 class ReviewsListView(generics.ListAPIView):
     serializer_class = ReviewSerializer
 

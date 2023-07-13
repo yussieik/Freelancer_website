@@ -12,8 +12,6 @@ from .views import (
     freelancer_page
 )
 
-
-
 urlpatterns = [
     # path('', homepage, name='homepage_url'),
     path('api/freelancers/<int:regionID>/<str:service>', FreelancerListView.as_view(), name='freelancers_list_api'),
@@ -24,11 +22,9 @@ urlpatterns = [
     path('api/create-review/', ReviewCreateView.as_view(), name='review_create_api'),
     path('home', home, name='homepage_url'),
     path('profi/<int:pk>', freelancer_page, name='freelancer_page_url')
+]
 
-
-
-    # path('visitors/login/', LoginView.as_view(template_name='visitors_login.html'), name='login'),
+# path('visitors/login/', LoginView.as_view(template_name='visitors_login.html'), name='login'),
     # path('visitors/logout/', LogoutView.as_view(), name='logout'),
     # path('visitors/signup/', SignupView.as_view(), name='signup'),
     # path('booking_info/<int:pk>', booking_info, name='booking_info_url')
-]
