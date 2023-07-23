@@ -1,0 +1,22 @@
+Hello Dmitry,
+
+I have reviewed your Django project and here is the feedback:
+
+- Your project structure and file organization are commendable. Creating the 'management' folder as a subfolder in the main app is an effective approach to separating concerns.
+
+- The readability and formatting of your code are on point.
+
+- You've shown impressive utilization of Django and Django REST Framework features. Your JavaScript integration stands out.
+
+- Your database modeling shows a clear understanding of the structure, although I noticed that you've started creating a custom User within an app that ideally shouldn't be responsible for authentication. It would be a good idea to create a separate app for this purpose.
+
+- Your views and URL design are well-crafted, which enhances the user experience and overall usability of the project.
+
+- On the error handling and validation, it's crucial to have some form of checks and balances to cater for edge cases. Consider using validations on your models/serializers and perhaps a try-except clause.
+
+- Lastly, I would strongly recommend improving your documentation. Documenting functions, classes, and other elements of your codebase will make it more understandable for others who might want to contribute or use it.
+
+Overall, your project displays a deep understanding of Django development. Just keep the above feedback in mind and continue refining your skills.
+
+Best regards.
+Yossi
